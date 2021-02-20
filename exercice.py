@@ -8,16 +8,31 @@ import itertools
 
 
 def get_maximums(numbers):
-	return [0]
+
+	return [max(elem) for elem in numbers]
 
 def join_integers(numbers):
-	return 0
+	return int("".join([str(element) for element in numbers]))
 
 def generate_prime_numbers(limit):
-	return [0]
+	premiers = []
+	nombres = [i for i in range(2,limit+1)]
+
+	while len(nombres) != 0:
+		premiers.append(nombres[0])
+		nombres = [i for i in nombres if i % nombres[0] != 0]
+
+	return premiers
 
 def combine_strings_and_numbers(strings, num_combinations, excluded_multiples):
-	return [""]
+	result = []
+
+	for number in range(1,num_combinations+1):
+		for string in strings:
+			if excluded_multiples == None or number % excluded_multiples != 0:
+				result.append(string+str(number))
+
+	return result
 
 if __name__ == "__main__":
 	print(get_maximums([[1,2,3], [6,5,4], [10,11,12], [8,9,7]]))
